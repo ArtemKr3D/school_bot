@@ -51,11 +51,4 @@ def main(message):
     bot.send_message(message.chat.id, 'Я вибачаюся але це поки що неможливо ☹')
     bot.send_message(message.chat.id, '/help')
 
-@bot.message_handler(content_types=['text'])
-def send_pic(message):
-        global file_photo
-        if message.text == 'Привет':
-            bot.send_photo(chat_id=message.from_user.id, photo="RALFI_night_street_black_cat_gets_wet_in_the_rain_cinematic_lig_def3faa5-8618-4313-82d3-6f30b793e2c7-2184x1260.PNG")
-            file_photo.close()
-
 bot.polling(none_stop=True)
