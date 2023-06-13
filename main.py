@@ -1,7 +1,8 @@
 import telebot
+from telebot import types
 
-bot = telebot.TeleBot('5596628205:AAH1lUAe11kJ4CfVHcg7d35qtxxXIf8O6a8')#prod
-# bot = telebot.TeleBot('6200157896:AAEewNsZ5Vv-7gq39uEf2oIwcyqMCPybB3k')#test
+# bot = telebot.TeleBot('5596628205:AAH1lUAe11kJ4CfVHcg7d35qtxxXIf8O6a8')#prod
+bot = telebot.TeleBot('6200157896:AAEewNsZ5Vv-7gq39uEf2oIwcyqMCPybB3k')#test
 
 @bot.message_handler(commands=['start'])
 def main(message):
@@ -36,19 +37,13 @@ def main(message):
     bot.send_message(message.chat.id, 'Дякую що ви хочете стати моїм спонсором 🥰')
 
 @bot.message_handler(commands=['buy'])
-def main(message):
+def start(message):
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     bot.send_message(message.chat.id, 'виберіть товар:')
-    bot.send_message(message.chat.id, '/1 ручка-стирачка')
-    bot.send_message(message.chat.id, '/2 стержні до ручки стирачки')
-
-@bot.message_handler(commands=['1'])
-def main(message):
-    bot.send_message(message.chat.id, 'Я вибачаюся але це поки що неможливо ☹')
-    bot.send_message(message.chat.id, '/help')
-
-@bot.message_handler(commands=['2'])
-def main(message):
-    bot.send_message(message.chat.id, 'Я вибачаюся але це поки що неможливо ☹')
-    bot.send_message(message.chat.id, '/help')
+    btn1 = types.KeyboardButton("ручка-стирачка")
+    btn2 = types.KeyboardButton('стержні до ручки стирачки')
+    markup.add(btn1, btn2)
+    bot.send_message(message.from_user.id, "ручка-стирачка / стержні до ручки стирачки", reply_markup=markup)
 
 bot.polling(none_stop=True)
