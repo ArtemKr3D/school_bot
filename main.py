@@ -1,19 +1,19 @@
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# bot = telebot.TeleBot('5596628205:AAH1lUAe11kJ4CfVHcg7d35qtxxXIf8O6a8')#prod
-bot = telebot.TeleBot('6200157896:AAEewNsZ5Vv-7gq39uEf2oIwcyqMCPybB3k')  # test
+bot = telebot.TeleBot('5596628205:AAH1lUAe11kJ4CfVHcg7d35qtxxXIf8O6a8')#prod
+# bot = telebot.TeleBot('6200157896:AAEewNsZ5Vv-7gq39uEf2oIwcyqMCPybB3k')  # test
+
+buttonYes = InlineKeyboardButton(text="так", callback_data="так")
+buttonNo = InlineKeyboardButton(text='ні', callback_data="ні")
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, 'Доброго дня! 😁.')
 
-    button1 = InlineKeyboardButton(text="так", callback_data="так")
-    button2 = InlineKeyboardButton(text='ні', callback_data="ні")
-
     markup = InlineKeyboardMarkup()
-    markup.add(button1, button2)
+    markup.add(buttonYes, buttonNo)
 
     bot.send_message(message.from_user.id, "Ви знаєте хто я?", reply_markup=markup)
 
