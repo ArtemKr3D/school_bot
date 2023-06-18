@@ -5,18 +5,18 @@ from telebot import types
 bot = telebot.TeleBot('6200157896:AAEewNsZ5Vv-7gq39uEf2oIwcyqMCPybB3k')#test
 
 @bot.message_handler(commands=['start'])
-def main(message):
+def start(message):
     bot.send_message(message.chat.id, 'Доброго дня! 😁.')
     bot.send_message(message.chat.id, 'Ви знаєте хто я? /No /Yes')
 
 @bot.message_handler(commands=['No'])
-def main(message):
+def no(message):
     bot.send_message(message.chat.id, 'Тоді я розповім 😊.')
     bot.send_message(message.chat.id, 'Я телеграм бот за допомогою якого ви можете замовити ручку та якісь констовари які я можу вам надати 😎.')
     bot.send_message(message.chat.id, 'Тепер ви знаєте хто я 🤗. Для детальнішої інформаці ви можете зателефонувати оператору 😉. /help')
 
-@bot.message_handler(commands=['Yes'])
-def main(message):
+@bot.message_handler(commands=['Yes']) #TODO додати команду спонсор
+def yes(message):
     bot.send_message(message.chat.id, 'Тоді Давайте розпочинати роботу 😁.')
     bot.send_message(message.chat.id, 'команди чата:')
     bot.send_message(message.chat.id, '/start - розпочати 🏁')
@@ -24,7 +24,7 @@ def main(message):
     bot.send_message(message.chat.id, '/buy - купити 💵')
 
 @bot.message_handler(commands=['help'])
-def main(message):
+def help(message):
     bot.send_message(message.chat.id, 'команди чата:')
     bot.send_message(message.chat.id, '/start - розпочати 🏁')
     bot.send_message(message.chat.id, '/help - команди чата ❓')
@@ -32,13 +32,11 @@ def main(message):
     bot.send_message(message.chat.id, '/to_sponsor - стати моїм спонсором 💸')
 
 @bot.message_handler(commands=['to_sponsor'])
-def main(message):
-    bot.send_message(message.chat.id, 'Дякую що ви хочете стати моїм спонсором 🥰')
+def toSponsor(message):
     bot.send_message(message.chat.id, 'Дякую що ви хочете стати моїм спонсором 🥰')
 
 @bot.message_handler(commands=['buy'])
-def start(message):
-
+def buy(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     bot.send_message(message.chat.id, 'виберіть товар:')
     btn1 = types.KeyboardButton("ручка-стирачка")
