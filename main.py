@@ -74,7 +74,8 @@ def test1(call):
     button3 = InlineKeyboardButton(text='стирачка для ручки стирачки', callback_data="стирачка для ручки стирачки")
 
     markup = InlineKeyboardMarkup()
-    markup.add(button1, button2, button3)
+    markup.row(button1, button2)
+    markup.row(button3)
 
     bot.send_message(call.from_user.id, "виберіть товар:", reply_markup=markup)
 
@@ -84,7 +85,7 @@ def test1(call):
     bot.send_photo(call.message.chat.id, photo=open('images/Дизайн без назви (27).png', 'rb'))
     bot.send_message(call.message.chat.id, '''ручка-стирачка
 ---------------------------------
-25 грн
+20 грн
 немає в наявності''')
 
 @bot.callback_query_handler(func=lambda call: call.data == "стержні до ручки стирачки")
@@ -92,7 +93,7 @@ def test2(call):
     bot.send_photo(call.message.chat.id, photo=open('images/Дизайн без назви (29).png', 'rb'))
     bot.send_message(call.message.chat.id, '''стержні до ручки стирачки
 ---------------------------------
-5 грн
+4 грн
 немає в наявності''')
 
 @bot.callback_query_handler(func=lambda call: call.data == "стирачка для ручки стирачки")
