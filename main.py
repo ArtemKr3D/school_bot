@@ -6,6 +6,10 @@ bot = telebot.TeleBot('6590677711:AAHOBqyCFnW31xjUXOtIx-DeexpMVqbqCkQ') # prod
 buttonYes = InlineKeyboardButton(text="так", callback_data="так")
 buttonNo = InlineKeyboardButton(text='ні', callback_data="ні")
 
+def lambda_handler(event, context):
+    update = telebot.types.Update.de_json(event['body'])
+    bot.process_new_updates([update])
+    return {}
 
 @bot.message_handler(commands=['start'])
 def start(message):
